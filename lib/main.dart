@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/home/homeScreen.dart';
+import 'package:project/home/introduction_screen.dart';
+import 'package:project/mytheme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:HomeScreen.routeName,
-      routes: {HomeScreen.routeName: (context) => HomeScreen(),}
+      initialRoute: OnboardingScreen.routeName,
+      routes: {
+        OnboardingScreen.routeName:(context)=>OnboardingScreen(),
+        HomeScreen.routeName: (context) => HomeScreen()
+      },
+      darkTheme: MyTheme.dartTheme,
+      themeMode:ThemeMode.dark,
     );
   }
 }
