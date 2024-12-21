@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/appcolors.dart';
 import 'package:project/home/tabs/ahadethTab.dart';
 import 'package:project/home/tabs/dateTab.dart';
-import 'package:project/home/tabs/quranTab.dart';
+import 'package:project/home/tabs/quran_tabDetails/quranTab.dart';
 import 'package:project/home/tabs/radioTab.dart';
 import 'package:project/home/tabs/sebhaTab.dart';
 
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: bulidItemButtonNavBar(index: 3, imageName: 'ic_radio'),
                   label: "Radio"),
               BottomNavigationBarItem(
-                  icon: bulidItemButtonNavBar(index: 4, imageName: 'date'),
+                  icon: bulidItemButtonNavBar(index: 4, imageName: 'dates'),
                   label: "Data"),
             ],
           ),

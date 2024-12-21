@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/home/homeScreen.dart';
-import 'package:project/home/introduction_screen.dart';
+import 'package:project/introduction_screen.dart';
+import 'package:project/home/sura_details.dart';
 import 'package:project/mytheme.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       initialRoute: OnboardingScreen.routeName,
       routes: {
         OnboardingScreen.routeName:(context)=>OnboardingScreen(),
-        HomeScreen.routeName: (context) => HomeScreen()
+        HomeScreen.routeName: (context) => HomeScreen(),
+        SuraDetailsScreen.routeName:(context)=>SuraDetailsScreen()
       },
       darkTheme: MyTheme.dartTheme,
       themeMode:ThemeMode.dark,
