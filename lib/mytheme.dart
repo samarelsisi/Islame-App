@@ -10,6 +10,13 @@ class MyTheme{
       selectedItemColor: AppColors.whiteColor,
       unselectedItemColor: AppColors.primaryDarkColor,
       showSelectedLabels: true,),
+   appBarTheme: AppBarTheme(
+     backgroundColor: AppColors.primaryDarkColor,
+     iconTheme: IconThemeData(
+         color: AppColors.primaryColor
+     ),
+     centerTitle: true,
+   ),
    textTheme: TextTheme(
   bodySmall: GoogleFonts.exo2(
   fontSize: 18,

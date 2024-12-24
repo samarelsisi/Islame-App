@@ -27,18 +27,14 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.primaryDarkColor,
       appBar: AppBar(
-        backgroundColor: AppColors.primaryDarkColor,
         title: Text(
           suraModel.nameEn,
-          style: GoogleFonts.aboreto(
+          style: GoogleFonts.akatab(
             fontSize: 20,
             color: AppColors.primaryColor
           ),
         ),
-        iconTheme: IconThemeData(
-          color: AppColors.primaryColor
-        ),
-        centerTitle: true,
+
       ),
       body: Stack(
         alignment: Alignment.topCenter,

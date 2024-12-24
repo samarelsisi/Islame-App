@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:project/cache/cache_helper.dart';
 import 'package:project/home/homeScreen.dart';
 
 
@@ -42,6 +43,7 @@ class OnboardingScreen extends StatelessWidget {
       globalBackgroundColor: const Color(0xFF202020),
       showDoneButton: true,
       onDone: () {
+        CacheHelper.saveEligibility();
         Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       },
       done: Text("Finish",
