@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:project/cache/cache_helper.dart';
 import 'package:project/home/homeScreen.dart';
 
 
@@ -10,7 +11,7 @@ class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/images/$assetName', width: width);
+    return Image.asset('assets/images/$assetName', width: width,);
   }
 
   @override
@@ -23,17 +24,17 @@ class OnboardingScreen extends StatelessWidget {
 
     var pageDecoration = PageDecoration(
       titleTextStyle: GoogleFonts.elMessiri(
-          fontSize: 24.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.bold,
           color: Color(0xFFE2BE7F)),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       pageColor: Color(0xFF202020),
       imageFlex: 4,
-      imagePadding: EdgeInsets.zero,
+      imagePadding: EdgeInsets.only(top: 10),
     );
     return IntroductionScreen(
-      globalHeader: Image.asset("assets/images/onboarding_header.png"),
+      globalHeader: Image.asset("assets/images/onboarding_header.png",height: 171,),
       dotsFlex: 2,
       dotsDecorator: const DotsDecorator(
         color: Color(0xFF707070),
@@ -42,6 +43,7 @@ class OnboardingScreen extends StatelessWidget {
       globalBackgroundColor: const Color(0xFF202020),
       showDoneButton: true,
       onDone: () {
+        CacheHelper.saveEligibility();
         Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       },
       done: Text("Finish",
