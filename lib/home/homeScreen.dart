@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/appcolors.dart';
-import 'package:project/home/tabs/ahadethTab.dart';
+import 'package:project/home/tabs/ahageth_tabDetails/ahadethTab.dart';
 import 'package:project/home/tabs/dateTab.dart';
 import 'package:project/home/tabs/quran_tabDetails/quranTab.dart';
 import 'package:project/home/tabs/radioTab.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/home/homeScreen.dart';
+import 'package:project/home/tabs/ahageth_tabDetails/hadeth_details.dart';
 import 'package:project/introduction_screen.dart';
 import 'package:project/home/sura_details.dart';
 import 'package:project/mytheme.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
       routes: {
         OnboardingScreen.routeName:(context)=>OnboardingScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
-        SuraDetailsScreen.routeName:(context)=>SuraDetailsScreen()
+        SuraDetailsScreen.routeName:(context)=>SuraDetailsScreen(),
+        HadethDetailsScreen.routeName:(context)=>HadethDetailsScreen()
       },
       darkTheme: MyTheme.dartTheme,
       themeMode:ThemeMode.dark,
