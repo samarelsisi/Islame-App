@@ -6,4 +6,6 @@ class AppColors{
  static const Color offWhite=Color(0xffFFF5E3);
  static const whiteColor=Color(0xffFFFFFF);
  static const blackColor=Color(0x99202020);
+ static const brownColor=Color(0xff856B3F);
+ static const gradientColor=Color(0xffB19768);
 }
