@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';  // Import carousel_slider package
-import '../../../appcolors.dart';
+import '../../../appcolors.dart'; // Make sure this path is correct for your AppColors
 
 class PrayTime extends StatelessWidget {
   const PrayTime({
@@ -9,6 +9,7 @@ class PrayTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Prayer names and their corresponding times
     List<String> prays = [
       "Fajr",
       "Dhuhr",
@@ -25,47 +26,45 @@ class PrayTime extends StatelessWidget {
     ];
 
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [AppColors.primaryDarkColor, AppColors.gradientColor],
         ),
       ),
-      child: CarouselSlider.builder(
-        itemCount: prays.length,
-        itemBuilder: (context, index, realIndex) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${prays[index]}",
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: AppColors.whiteColor,
-                    fontWeight: FontWeight.bold,
+      child: CarouselSlider(
+        items: prays.asMap().entries.map((entry) {
+          int index = entry.key;
+          return Builder(builder:(BuildContext context){
+            return
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "${prays[index]}",
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: AppColors.whiteColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  times[index], // Corresponding time for the prayer
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: AppColors.whiteColor,
+                  const SizedBox(height: 10),
+                  Text(
+                    times[index],
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: AppColors.whiteColor,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-              ],
-            ),
+                ],
+              );
+          }
+
           );
-        },
+        }).toList(),
         options: CarouselOptions(
-          height: 200,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          aspectRatio: 2.0,
-          viewportFraction: 0.8,
+          height: double.infinity
+           // Show part of the previous and next item
         ),
       ),
     );
