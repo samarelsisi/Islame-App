@@ -123,7 +123,6 @@ class _AhadethTabState extends State<AhadethTab> {
           print(title);
           allAhadeth.add(hadethModel);
         }
-
         setState(() {});
       },
     ).catchError(

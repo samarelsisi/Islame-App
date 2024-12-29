@@ -1,22 +1,16 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/appcolors.dart';
-
 class SebhaTab extends StatefulWidget {
   const SebhaTab({super.key});
-
-
   @override
   State<SebhaTab> createState() => _SebhaTabState();
 }
-
 class _SebhaTabState extends State<SebhaTab> {
   double angle = 0;
   int counter = 0;
   int index=0;
   List<String> Tasbeh = ['الله اكبر', ' الحمد لله', 'سبحان الله'];
-
   void _rotateImage() {
     setState(() {
       angle += 0.19;
@@ -48,7 +42,7 @@ class _SebhaTabState extends State<SebhaTab> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset("assets/images/onboarding_header.png"),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
@@ -59,9 +53,6 @@ class _SebhaTabState extends State<SebhaTab> {
               color: Colors.white,
             ),
             textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 30,
           ),
           Stack(
             alignment: Alignment.center,
@@ -75,7 +66,7 @@ class _SebhaTabState extends State<SebhaTab> {
                     angle: angle,
                     child: Image.asset('assets/images/SebhaCounter.png')),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Text(

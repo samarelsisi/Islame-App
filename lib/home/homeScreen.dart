@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/appcolors.dart';
 import 'package:project/home/tabs/ahageth_tabDetails/ahadethTab.dart';
-import 'package:project/home/tabs/dateTab.dart';
+import 'package:project/home/tabs/dates_tab/dateTab.dart';
 import 'package:project/home/tabs/quran_tabDetails/quranTab.dart';
-import 'package:project/home/tabs/radioTab.dart';
+import 'package:project/home/tabs/radio_tab/radioTab.dart';
 import 'package:project/home/tabs/sebhaTab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -77,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return "sebha_bg";
       case 3:
         return "radio_bg";
-
+      case 4:
+        return "dates_bg";
       default:
         return "home_bg";
     }
