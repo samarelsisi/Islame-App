@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/home/sura_details.dart';
 import 'package:project/home/tabs/quran_tabDetails/suraItem.dart';
 import 'package:project/home/tabs/quran_tabDetails/suraItem_horizontial.dart';
-
 import '../../../appcolors.dart';
 import '../../../models/sura_model.dart';
 
@@ -15,25 +14,38 @@ class QuranTab extends StatefulWidget {
 }
 
 class _QuranTabState extends State<QuranTab> {
+  String searchText='';
+  void addSuraList(){
+    for(int i=0;i<114;i++){
+      SuraModel.suraList.add(SuraModel(
+          nameEn: SuraModel.suraNamesEn[i],
+          nameAr: SuraModel.suraNamesAr[i],
+          fileName: '${i+1}.txt',
+          numOfVerses: SuraModel.suraVerseCounts[i]));
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    searchController.addListener(onSearch);
+    addSuraList();
+
   }
+  List<SuraModel>filterList=SuraModel.suraList;
   var searchController = TextEditingController();
-  onSearch() {
-    SuraModel.searchResult.clear();
-    String text = searchController.text;
-    if (text.isNotEmpty) {
-      for (String data in SuraModel.suraNamesEn) {
-        if (data.toLowerCase().contains(text.toLowerCase())) {
-          SuraModel.searchResult.add(data);
-        }
-      }
-    }
-    setState(() {});
-  }
+  // onSearch() {
+  //   SuraModel.searchResult.clear();
+  //   String text = searchController.text;
+  //   if (text.isNotEmpty) {
+  //     for (String data in SuraModel.suraNamesEn) {
+  //       if (data.toLowerCase().contains(text.toLowerCase())) {
+  //         SuraModel.searchResult.add(data);
+  //       }
+  //     }
+  //   }
+  //   setState(() {});
+  // }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,6 +95,15 @@ class _QuranTabState extends State<QuranTab> {
               borderSide: const BorderSide(color: AppColors.primaryColor, width: 3),
             ),
           ),
+          onChanged: (text){
+            searchText=text;
+            filterList=SuraModel.suraList.where((SuraModel){
+              return SuraModel.nameAr.toLowerCase().contains(searchText.toLowerCase())||SuraModel.nameEn.toLowerCase().contains(searchText.toLowerCase());
+            }).toList();
+            setState(() {
+
+            });
+          },
         ),
         const SizedBox(
           height: 20,
@@ -113,7 +134,8 @@ class _QuranTabState extends State<QuranTab> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return SuraitemHorizontial(
-                model: SuraModel.getSuraModel(index),
+
+                model: SuraModel.suraList[index],
               );
             },
             itemCount: SuraModel.listCounts,
@@ -126,6 +148,7 @@ class _QuranTabState extends State<QuranTab> {
     );
   }
   Widget _suraNamesVerticalList() {
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,17 +172,15 @@ class _QuranTabState extends State<QuranTab> {
                 return InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, SuraDetailsScreen.routeName,
-                        arguments: SuraModel.getSuraModel(index));
+                        arguments:filterList[index] );
                   },
                   child: SuraItem(
-                      model: SuraModel.searchResult.isNotEmpty
-                          ? SuraModel.getSelectedSuraModel(index)
-                          : SuraModel.getSuraModel(index)),
-                );
+                    index: index,
+                  model:filterList[index]
+                  ) );
               },
-              itemCount: SuraModel.searchResult.isNotEmpty
-                  ? SuraModel.searchResult.length
-                  : SuraModel.listCounts,
+              itemCount:filterList.length
+
             ),
           ),
         ],

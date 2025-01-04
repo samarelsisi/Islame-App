@@ -22,7 +22,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   Widget build(BuildContext context) {
     var suraModel = ModalRoute.of(context)?.settings.arguments as SuraModel;
     if (verses.isEmpty) {
-      loadSuraFile(suraModel.index);
+      loadSuraFile(suraModel.fileName);
     }
     return Scaffold(
       backgroundColor: AppColors.primaryDarkColor,
@@ -107,9 +107,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     );
   }
 
-  void loadSuraFile(int index) async {
+  void loadSuraFile(String fileName) async {
     String textFile =
-    await rootBundle.loadString("assets/files/${index + 1}.txt");
+    await rootBundle.loadString("assets/files/$fileName");
     List<String> lines = textFile.split("\n");
     verses = lines;
     setState(() {});

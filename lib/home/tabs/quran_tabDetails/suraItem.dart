@@ -4,7 +4,8 @@ import 'package:project/models/sura_model.dart';
 
 class SuraItem extends StatelessWidget {
   SuraModel model;
-   SuraItem({required this.model,super.key});
+  int index;
+   SuraItem({required this.model,required this.index ,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class SuraItem extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 4),
                 child: Text(
-                  "${model.index+1}",
+                  "${index+1}",
                   style:
                   GoogleFonts.elMessiri(
                       fontSize: 16,
