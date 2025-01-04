@@ -1,34 +1,35 @@
 class SuraModel {
   String nameEn;
   String nameAr;
-  int index;
+  String fileName;
   int numOfVerses;
 
   SuraModel(
       {required this.nameEn,
       required this.nameAr,
-      required this.index,
+      required this.fileName,
       required this.numOfVerses});
 
   static int get listCounts => suraNamesAr.length;
 
-  static SuraModel getSuraModel(int index) {
-    return SuraModel(
-      nameEn: suraNamesEn[index],
-      nameAr: suraNamesAr[index],
-      index: index,
-      numOfVerses: suraVerseCounts[index],
-    );
-  }
+  // static SuraModel getSuraModel(int index) {
+  //   return SuraModel(
+  //     nameEn: suraNamesEn[index],
+  //     nameAr: suraNamesAr[index],
+  //     index: index,
+  //
+  //     numOfVerses: suraVerseCounts[index],
+  //   );
+  // }
 
-  static SuraModel getSelectedSuraModel(int index) {
-    return SuraModel(
-      nameEn: searchResult[index],
-      nameAr: searchResult[index],
-      index: index,
-      numOfVerses: suraVerseCounts[index],
-    );
-  }
+  // static SuraModel getSelectedSuraModel(int index) {
+  //   return SuraModel(
+  //     nameEn: searchResult[index],
+  //     nameAr: searchResult[index],
+  //     index: index,
+  //     numOfVerses: suraVerseCounts[index],
+  //   );
+  // }
 
   static List<String> searchResult = [];
   static List<String> suraNamesAr = [
@@ -381,4 +382,5 @@ class SuraModel {
     "Al-Falaq",
     "An-Nas"
   ];
+  static List<SuraModel>suraList=[];
 }
