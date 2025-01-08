@@ -4,8 +4,10 @@ import 'package:project/main.dart';
 import 'package:project/models/sura_model.dart';
 
 class SuraitemHorizontial extends StatelessWidget {
-  SuraModel model;
-   SuraitemHorizontial({required this.model,super.key});
+  String suraArName;
+  String suraEnName;
+  String numOfVerses;
+   SuraitemHorizontial({required this.suraEnName,required this.suraArName,required this.numOfVerses,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SuraitemHorizontial extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(model.nameEn,
+              Text(suraEnName,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
@@ -29,7 +31,7 @@ class SuraitemHorizontial extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                model.nameAr,
+             suraArName,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -38,7 +40,7 @@ class SuraitemHorizontial extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Text("${model.numOfVerses} Verses",
+              Text("${numOfVerses} Verses",
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall!

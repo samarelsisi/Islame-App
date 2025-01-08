@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/home/sura_details.dart';
 import 'package:project/home/tabs/quran_tabDetails/suraItem.dart';
 import 'package:project/home/tabs/quran_tabDetails/suraItem_horizontial.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../appcolors.dart';
 import '../../../models/sura_model.dart';
 
@@ -15,13 +16,14 @@ class QuranTab extends StatefulWidget {
 
 class _QuranTabState extends State<QuranTab> {
   String searchText='';
+  Map<String,String> loadSuraList={};
   void addSuraList(){
     for(int i=0;i<114;i++){
       SuraModel.suraList.add(SuraModel(
           nameEn: SuraModel.suraNamesEn[i],
           nameAr: SuraModel.suraNamesAr[i],
           fileName: '${i+1}.txt',
-          numOfVerses: SuraModel.suraVerseCounts[i]));
+          numOfVerses: '${SuraModel.suraVerseCounts[i]}'));
     }
   }
 
@@ -30,6 +32,7 @@ class _QuranTabState extends State<QuranTab> {
     // TODO: implement initState
     super.initState();
     addSuraList();
+    loadLastSura();
 
   }
   List<SuraModel>filterList=SuraModel.suraList;
@@ -61,6 +64,7 @@ class _QuranTabState extends State<QuranTab> {
               searchController.text.isNotEmpty)) ...[
             _suraNamesHorizontalList(),
           ],
+
             _suraNamesVerticalList(),
         ],
       ),
@@ -123,7 +127,7 @@ class _QuranTabState extends State<QuranTab> {
         const SizedBox(
           height: 8,
         ),
-        SuraModel.searchResult.isNotEmpty
+      loadSuraList.isEmpty
             ? const SizedBox()
             : SizedBox(
           height: 150,
@@ -133,10 +137,8 @@ class _QuranTabState extends State<QuranTab> {
             ),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return SuraitemHorizontial(
-
-                model: SuraModel.suraList[index],
-              );
+              return SuraitemHorizontial(suraEnName: loadSuraList['suraEnName']??'',
+                  suraArName:loadSuraList['suraArName']??'' , numOfVerses: loadSuraList['numOfVerses']??'');
             },
             itemCount: SuraModel.listCounts,
           ),
@@ -171,6 +173,9 @@ class _QuranTabState extends State<QuranTab> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
+                    saveLastSura(suraEnName: filterList[index].nameEn,
+                        suraArName: filterList[index].nameAr,
+                        numOfVerses: filterList[index].numOfVerses);
                     Navigator.pushNamed(context, SuraDetailsScreen.routeName,
                         arguments:filterList[index] );
                   },
@@ -186,5 +191,30 @@ class _QuranTabState extends State<QuranTab> {
         ],
       ),
     );
+  }
+  saveLastSura({required String suraEnName,required String suraArName,
+    required String numOfVerses})async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
+    await prefs.setString('suraEnName', suraEnName);
+    await prefs.setString('suraArName', suraArName);
+    await prefs.setString('numOfVerses', numOfVerses);
+    await loadLastSura();
+  }
+  getLastSura()async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
+    String suraEnName=prefs.getString('suraEnName')??'';
+    String suraArName=prefs.getString('suraArName')??'';
+    String numOfVerses=prefs.getString('numOfVerses')??'';
+    return{
+      'suraEnName':suraEnName,
+      'suraArName':suraArName,
+      'numOfVerses':numOfVerses
+    };
+  }
+  loadLastSura()async{
+  loadSuraList= await getLastSura();
+  setState(() {
+
+  });
   }
 }
