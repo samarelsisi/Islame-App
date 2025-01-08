@@ -2,7 +2,7 @@ class SuraModel {
   String nameEn;
   String nameAr;
   String fileName;
-  int numOfVerses;
+  String numOfVerses;
 
   SuraModel(
       {required this.nameEn,
