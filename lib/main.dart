@@ -5,6 +5,8 @@ import 'package:project/introduction_screen.dart';
 import 'package:project/home/sura_details.dart';
 import 'package:project/mytheme.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:project/provider/radio_manger_provider.dart';
+import 'package:provider/provider.dart';
 
 
 import 'cache/cache_helper.dart';
@@ -13,7 +15,8 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
 
-  runApp(DevicePreview(builder:(context)=> const MyApp()));
+  runApp(ChangeNotifierProvider(create: (context)=>RadioManagerProvider(),
+      child:DevicePreview(builder:(context)=> const MyApp())) ,);
 }
 
 class MyApp extends StatelessWidget {
